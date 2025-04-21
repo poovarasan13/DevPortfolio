@@ -56,7 +56,7 @@ const ProjectCard = ({ project }) => {
               </span>
             ))}
           </div>
-          {project.liveUrl && (
+          {/* {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
@@ -66,7 +66,7 @@ const ProjectCard = ({ project }) => {
               {project.linkText}
               <ExternalLink className="ml-1 w-4 h-4" />
             </a>
-          )}
+          )} */}
         </div>
       </div>
     </div>
