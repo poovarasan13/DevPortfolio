@@ -6,7 +6,7 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-xxl mx-auto px-4 sm:px-6 lg:px-6 ">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">My Tech Stack</h2>
           <div className="w-20 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto"></div>
@@ -15,7 +15,7 @@ const Skills = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-1">
           {skills.map((skill, index) => (
             <div key={index} className="flex flex-col items-center group ">
               <motion.div
