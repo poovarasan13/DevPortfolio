@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { ChevronDown, MousePointerClick } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, MousePointerClick, Download } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const roles = ["MernStack Developer", "Web Designer"];
-  
+  const [isLoadingCv, setIsLoadingCv] = useState(false);
+  const RESUME_LINK = "https://drive.google.com/file/d/1vj7KNuLu0VbEaQFrE8SjjocnajOweykP/view?usp=drive_link";
 
+  const handleDownloadCv = (e) => {
+    e.preventDefault();
+    setIsLoadingCv(true);
+    const link = document.createElement('a');
+    link.href = RESUME_LINK;
+    link.download = `Poovarasan_Resume_${new Date().toISOString().slice(0, 10)}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => setIsLoadingCv(false), 1000);
+  };
 
   useEffect(() => {
     setIsVisible(true);
-    
-    // Cycle through names every 3 seconds
-    const nameInterval = setInterval(() => {
-      setCurrentNameIndex((prev) => (prev + 1) % names.length);
-    }, 3000);
-
-    return () => clearInterval(nameInterval);
   }, []);
 
   const scrollTo = (id) => {
@@ -32,7 +37,6 @@ const Hero = () => {
       id="hero"
       className="relative h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated gradient background */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-indigo-500/30 via-purple-500/30 to-pink-500/30 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-pink-900/20"
@@ -50,12 +54,10 @@ const Hero = () => {
         />
       </div>
 
-      {/* Subtle animated grid pattern */}
       <div className="absolute inset-0 opacity-20 dark:opacity-10">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgwLDAsMCwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')]"></div>
       </div>
 
-      {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -112,22 +114,20 @@ const Hero = () => {
             </motion.a>
             
             <motion.a
-              href="#projects"
+              href={RESUME_LINK}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3.5 text-base font-medium rounded-lg text-indigo-600 bg-white border-2 border-indigo-600 hover:bg-gray-50 dark:text-indigo-400 dark:bg-gray-800 dark:border-indigo-400 dark:hover:bg-gray-700 shadow-lg transition-all duration-300"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo('projects');
-              }}
+              className="px-8 py-3.5 text-base font-medium rounded-lg text-indigo-600 bg-white border-2 border-indigo-600 hover:bg-gray-50 dark:text-indigo-400 dark:bg-gray-800 dark:border-indigo-400 dark:hover:bg-gray-700 shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+              onClick={handleDownloadCv}
+              download
             >
-              View Projects
+              {isLoadingCv ? 'Downloading...' : 'Download CV'}
+              <Download className="w-4 h-4" />
             </motion.a>
           </motion.div>
         </motion.div>
       </div>
-      
-      {/* Scroll indicator */}
+
       <motion.div 
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0, y: 20 }}

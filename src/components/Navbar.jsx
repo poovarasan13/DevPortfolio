@@ -85,7 +85,7 @@ const Navbar = () => {
               <NavItem label="About" onClick={() => scrollToSection('about')} />
               <NavItem label="Skills" onClick={() => scrollToSection('skills')} />
               <NavItem label="Projects" onClick={() => scrollToSection('projects')} />
-              <NavItem label="Experience" onClick={() => scrollToSection('experience')} />
+              <NavItem label="Education" onClick={() => scrollToSection('education')} />
               <NavItem label="Contact" onClick={() => scrollToSection('contact')} />
             </div>
 
@@ -155,13 +155,13 @@ const Navbar = () => {
           <MobileNavItem label="About" onClick={() => scrollToSection('about')} />
           <MobileNavItem label="Skills" onClick={() => scrollToSection('skills')} />
           <MobileNavItem label="Projects" onClick={() => scrollToSection('projects')} />
-          <MobileNavItem label="Experience" onClick={() => scrollToSection('experience')} />
+          <MobileNavItem label="Education" onClick={() => scrollToSection('education')} />
           <MobileNavItem label="Contact" onClick={() => scrollToSection('contact')} />
           
           <div className="flex items-center space-x-4 pt-8">
             <SocialLink href="https://github.com/poovarasan13" icon={<Github className="w-5 h-5" />} />
             <SocialLink href="https://www.linkedin.com/in/poovarasan13" icon={<Linkedin className="w-5 h-5" />} />
-            <SocialLink href="mailto:poovarasanr13@gmail.com" icon={<Mail className="w-5 h-5" />} />
+            <SocialLink href="mailto:poovarasan936161@gmail.com" icon={<Mail className="w-5 h-5" />} />
           </div>
         </div>
       </div>
