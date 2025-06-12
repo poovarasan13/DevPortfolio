@@ -76,7 +76,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 md:h-20 items-center">
           <div className="flex-shrink-0 cursor-pointer" onClick={() => scrollToSection('hero')}>
-            <h1 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Poovarasan</h1>
+            <h1 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Poovarasan S</h1>
           </div>
 
           {/* Desktop menu */}
@@ -94,7 +94,7 @@ const Navbar = () => {
               <SocialLink href={link.linkedin} icon={<Linkedin className="w-5 h-5" />} />
               <SocialLink href={link.gmail} icon={<Mail className="w-5 h-5" />} />
               
-              <button
+              {/* <button
                 onClick={toggleTheme}
                 className="p-2 rounded-full text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 focus:outline-none"
                 aria-label="Toggle theme"
@@ -104,7 +104,7 @@ const Navbar = () => {
                 ) : (
                   <Moon className="w-5 h-5" />
                 )}
-              </button>
+              </button> */}
             </div>
           </div>
 
