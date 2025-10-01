@@ -6,8 +6,8 @@ const Education = () => {
     {
       degree: "BTech in  Information Technology",
       institution: "Karpagam College of Engineering , Coimbatore",
-      year: "2022 - Pressnt",
-      description: " CGPA : 8.5"
+      year: "2022 - Present",
+      description: " CGPA : 8.27"
     },
     {
       degree: "Higher Secondary Education",
