@@ -7,7 +7,7 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const roles = ["Java Full Stack Developer","MernStack Developer", "Web Designer"];
   const [isLoadingCv, setIsLoadingCv] = useState(false);
-  const RESUME_LINK = "https://drive.google.com/file/d/1481n_E8Ohc9v9Aeke3CrX8LJDZ9UhLse/view?usp=sharing";
+  const RESUME_LINK = "https://drive.google.com/file/d/1Y5OyVdkzT-DkuaR3bxO3QdjKuyOjaQK5/view?usp=sharing";
 
   const handleDownloadCv = (e) => {
     e.preventDefault();
