@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ContactInfo = ({ icon, title, content, link }) => {
   return (
@@ -36,27 +36,28 @@ const Contact = () => {
   const form = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState({ message: '', isError: false });
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     emailjs.sendForm(
-      'service_mxmgswn', 
-      'template_umr5kus', 
+      import.meta.env.VITE_EMAILJS_SERVICE_ID, 
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
       form.current, 
-      'j49BXGHrpAVID0k4R'
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     )
     .then(() => {
-      setFeedback({ message: 'Message sent successfully!', isError: false });
+      setShowSuccessModal(true);
       form.current.reset();
     })
     .catch(() => {
       setFeedback({ message: 'Failed to send message. Please try again.', isError: true });
+      setTimeout(() => setFeedback({ message: '', isError: false }), 5000);
     })
     .finally(() => {
       setIsSubmitting(false);
-      setTimeout(() => setFeedback({ message: '', isError: false }), 5000);
     });
   };
 
@@ -181,9 +182,9 @@ const Contact = () => {
                 )}
               </motion.button>
               
-              {feedback.message && (
+              {feedback.message && feedback.isError && (
                 <motion.p 
-                  className={`mt-4 text-sm text-center ${feedback.isError ? 'text-red-500' : 'text-green-500'}`}
+                  className="mt-4 text-sm text-center text-red-500"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
@@ -195,6 +196,43 @@ const Contact = () => {
           </motion.form>
         </div>
       </div>
+
+      <AnimatePresence>
+        {showSuccessModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md w-full shadow-2xl border border-gray-100 dark:border-gray-700 text-center relative overflow-hidden"
+            >
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-indigo-500/10 rounded-full blur-xl"></div>
+              
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 mb-6">
+                <svg className="h-10 w-10 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                Message Sent!
+              </h3>
+              
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Thank you for reaching out. I have received your message and will get back to you as soon as possible.
+              </p>
+              
+              <button
+                type="button"
+                onClick={() => setShowSuccessModal(false)}
+                className="w-full py-3 px-6 text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 shadow-lg shadow-indigo-500/25 transition-all duration-200 cursor-pointer"
+              >
+                Close
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

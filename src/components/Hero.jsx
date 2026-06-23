@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, MousePointerClick, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Typewriter from 'typewriter-effect';
+import Typewriter from './Typewriter';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
