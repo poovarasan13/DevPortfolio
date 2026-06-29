@@ -35,43 +35,33 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="relative h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-cyber-dark cyber-grid scanline-container transition-colors duration-300"
     >
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-indigo-500/30 via-purple-500/30 to-pink-500/30 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-pink-900/20"
-          animate={{
-            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-          style={{
-            backgroundSize: '300% 300%',
-          }}
-        />
+      {/* Tech Ambient Neon Glowing Orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/10 w-72 md:w-96 h-72 md:h-96 bg-indigo-500/10 dark:bg-cyber-cyan/10 rounded-full filter blur-[80px] md:blur-[120px] animate-pulse-slow" />
+        <div className="absolute bottom-1/4 right-1/10 w-80 md:w-[450px] h-80 md:h-[450px] bg-purple-500/10 dark:bg-cyber-purple/10 rounded-full filter blur-[100px] md:blur-[150px] animate-pulse" />
       </div>
 
-      <div className="absolute inset-0 opacity-20 dark:opacity-10">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgwLDAsMCwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')]"></div>
-      </div>
-
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto tech-bracket-container py-12 px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+          <div className="text-xs uppercase font-mono tracking-[0.25em] text-indigo-600 dark:text-cyber-cyan mb-3 dark:drop-shadow-[0_0_5px_rgba(0,242,254,0.3)]">
+            // INITIALIZING PORTFOLIO...
+          </div>
+          
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight font-display tracking-tight">
             Hi, I'm{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-cyber-cyan dark:to-cyber-purple dark:drop-shadow-[0_0_15px_rgba(0,242,254,0.25)]">
               Poovarasan
             </span>
           </h1>
           
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 dark:text-gray-200 mb-6 h-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-8 h-12 font-mono">
+            &lt;{' '}
             <Typewriter
               options={{
                 strings: roles,
@@ -82,15 +72,16 @@ const Hero = () => {
                 cursor: '_',
               }}
             />
+            {' '}/&gt;
           </h2>
           
           <motion.p 
-            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-8"
+            className="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed font-sans"
             initial={{ opacity: 0 }}
             animate={isVisible ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            I build exceptional and accessible digital experiences for the web with a focus on performance, accessibility, and clean code.
+            I build responsive, high-performance web applications using modern technology stacks. Focused on translating clean code into elegant, interactive user experiences.
           </motion.p>
           
           <motion.div 
@@ -101,9 +92,9 @@ const Hero = () => {
           >
             <motion.a
               href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3.5 text-base font-medium rounded-lg text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 dark:from-indigo-500 dark:to-purple-500 shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="px-8 py-3.5 text-sm font-bold tracking-wider uppercase rounded-lg text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 dark:from-cyber-cyan dark:to-cyber-purple dark:text-cyber-dark dark:hover:shadow-[0_0_25px_rgba(0,242,254,0.5)] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-lg"
               onClick={(e) => {
                 e.preventDefault();
                 scrollTo('contact');
@@ -115,9 +106,9 @@ const Hero = () => {
             
             <motion.a
               href={RESUME_LINK}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3.5 text-base font-medium rounded-lg text-indigo-600 bg-white border-2 border-indigo-600 hover:bg-gray-50 dark:text-indigo-400 dark:bg-gray-800 dark:border-indigo-400 dark:hover:bg-gray-700 shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="px-8 py-3.5 text-sm font-bold tracking-wider uppercase rounded-lg text-indigo-600 bg-white border border-indigo-600 hover:bg-gray-50 dark:text-cyber-cyan dark:bg-transparent dark:border-cyber-cyan dark:hover:bg-cyber-cyan/10 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer hover:shadow-[0_0_20px_rgba(0,242,254,0.15)] shadow-md"
               onClick={handleDownloadCv}
               download
             >
@@ -137,17 +128,17 @@ const Hero = () => {
         <button
           onClick={() => scrollTo('about')}
           aria-label="Scroll to About section"
-          className="group p-3 rounded-full text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 focus:outline-none flex flex-col items-center"
+          className="group p-3 rounded-full text-gray-400 hover:text-indigo-600 dark:hover:text-cyber-cyan focus:outline-none flex flex-col items-center cursor-pointer"
         >
           <motion.div
-            animate={{ y: [0, 10, 0] }}
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
             className="mb-1"
           >
-            <ChevronDown className="w-6 h-6" />
+            <ChevronDown className="w-5 h-5" />
           </motion.div>
-          <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-            Scroll Down
+          <span className="text-[10px] uppercase font-mono tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+            scroll_down
           </span>
         </button>
       </motion.div>

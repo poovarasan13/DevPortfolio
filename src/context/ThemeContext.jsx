@@ -16,7 +16,7 @@ export const ThemeProvider = ({ children }) => {
     if (savedTheme) {
       return savedTheme === 'dark';
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return true; // Default to dark mode for the tech theme
   });
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const ThemeProvider = ({ children }) => {
       root.classList.add('dark');
       localStorage.setItem('theme', 'dark');
     } else {
-      root.classList.remove('white');
+      root.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
   }, [darkMode]);
