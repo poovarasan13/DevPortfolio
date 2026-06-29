@@ -1,1 +1,150 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  
+  --color-cyber-dark: #06060c;
+  --color-cyber-card-dark: rgba(13, 14, 28, 0.6);
+  --color-cyber-card-light: rgba(255, 255, 255, 0.7);
+  --color-cyber-border-dark: rgba(99, 102, 241, 0.2);
+  --color-cyber-border-light: rgba(99, 102, 241, 0.1);
+  --color-cyber-cyan: #00f2fe;
+  --color-cyber-purple: #9d4edd;
+  --color-cyber-pink: #ff007f;
+  
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-grid-pulse: grid-pulse 10s ease infinite;
+
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  @keyframes grid-pulse {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.35; }
+  }
+}
+
+/* Custom Base Styles */
+body {
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Cyber Grids */
+.cyber-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+}
+.dark .cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(6, 242, 254, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 242, 254, 0.06) 1px, transparent 1px);
+}
+
+/* Glassmorphism Panels */
+.glass-panel {
+  background: var(--color-cyber-card-light);
+  border: 1px solid var(--color-cyber-border-light);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+}
+.dark .glass-panel {
+  background: var(--color-cyber-card-dark);
+  border: 1px solid var(--color-cyber-border-dark);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Neon Text Glows */
+.neon-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.5), 0 0 20px rgba(0, 242, 254, 0.2);
+}
+.neon-glow-purple {
+  text-shadow: 0 0 10px rgba(157, 78, 221, 0.5), 0 0 20px rgba(157, 78, 221, 0.2);
+}
+
+/* Interactive Scanning effect */
+.scanline-container {
+  position: relative;
+  overflow: hidden;
+}
+.scanline-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to bottom, transparent, rgba(6, 242, 254, 0.4), transparent);
+  pointer-events: none;
+  animation: scanline 6s linear infinite;
+  z-index: 5;
+}
+
+/* Custom Cyberpunk Bracket Accents */
+.tech-bracket-container {
+  position: relative;
+}
+.tech-bracket-container::before,
+.tech-bracket-container::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(99, 102, 241, 0.4);
+  border-style: solid;
+  pointer-events: none;
+}
+.dark .tech-bracket-container::before,
+.dark .tech-bracket-container::after {
+  border-color: rgba(0, 242, 254, 0.5);
+}
+.tech-bracket-container::before {
+  top: -2px;
+  left: -2px;
+  border-width: 2px 0 0 2px;
+}
+.tech-bracket-container::after {
+  bottom: -2px;
+  right: -2px;
+  border-width: 0 2px 2px 0;
+}
+
+/* Rotating Gradient Border for Cards */
+@keyframes rotate-gradient {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.gradient-border-wrap {
+  position: relative;
+  padding: 1px;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+.gradient-border-wrap::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, #00f2fe, #9d4edd, transparent 60%);
+  animation: rotate-gradient 6s linear infinite;
+  z-index: 0;
+}
+.gradient-border-content {
+  position: relative;
+  z-index: 1;
+  border-radius: calc(0.75rem - 1px);
+}

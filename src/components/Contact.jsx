@@ -6,26 +6,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 const ContactInfo = ({ icon, title, content, link }) => {
   return (
     <motion.div 
-      className="flex items-start space-x-4"
+      className="flex items-start space-x-4 glass-panel p-5 rounded-2xl border border-gray-100 dark:border-cyber-border-dark"
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
       <div className="flex-shrink-0">
-        <div className="p-3 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg shadow-sm">
+        <div className="p-3 bg-indigo-50 dark:bg-cyber-cyan/5 rounded-lg border border-indigo-150/40 dark:border-cyber-cyan/20">
           {icon}
         </div>
       </div>
       <div>
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white">{title}</h3>
+        <h3 className="text-xs font-bold font-mono tracking-widest text-gray-500 dark:text-cyber-cyan/60 uppercase mb-0.5">{title}</h3>
         {link ? (
           <a 
             href={link}
-            className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
+            className="text-base font-semibold text-gray-800 dark:text-gray-250 hover:text-indigo-650 dark:hover:text-cyber-cyan transition-colors duration-200"
           >
             {content}
           </a>
         ) : (
-          <p className="text-gray-600 dark:text-gray-300">{content}</p>
+          <p className="text-base font-semibold text-gray-800 dark:text-gray-250">{content}</p>
         )}
       </div>
     </motion.div>
@@ -61,11 +61,16 @@ const Contact = () => {
     });
   };
 
-  const inputClasses = "mt-1 block w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-3 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-500/50 transition-all duration-200";
+  const inputClasses = "mt-1 block w-full rounded-lg border border-gray-300 dark:border-cyber-border-dark bg-white dark:bg-cyber-dark/40 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:border-cyber-cyan dark:focus:ring-cyber-cyan/15 transition-all duration-200 font-mono text-sm";
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 bg-gradient-to-b from-white to-gray-50 dark:from-cyber-dark dark:to-cyber-dark relative overflow-hidden transition-colors duration-300">
+      {/* Tech Background decoration */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30 dark:opacity-100">
+        <div className="absolute top-1/2 left-0 w-80 h-80 bg-cyber-cyan/5 dark:bg-cyber-cyan/5 rounded-full filter blur-[100px]" />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -73,55 +78,54 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
             Get In Touch
           </h2>
-          <div className="w-24 h-1.5 bg-indigo-600 dark:bg-indigo-400 mx-auto rounded-full"></div>
-          <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Have a project in mind or want to chat? Drop me a message below!
+          <div className="w-24 h-1 bg-indigo-600 dark:bg-cyber-cyan mx-auto rounded-full"></div>
+          <p className="mt-6 text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            Have an open requirement, project idea, or just want to chat? Drop a message!
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div 
-            className="space-y-8"
+            className="space-y-6"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
             <ContactInfo 
-              icon={<Mail className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />}
+              icon={<Mail className="w-5 h-5 text-indigo-600 dark:text-cyber-cyan" />}
               title="Email"
-              content="poovarasanr13@gmail.com"
+              content="poovarasan936161@gmail.com"
               link="mailto:poovarasan936161@gmail.com"
             />
             <ContactInfo 
-              icon={<Phone className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />}
+              icon={<Phone className="w-5 h-5 text-indigo-600 dark:text-cyber-cyan" />}
               title="Phone"
               content="+91 9361614200"
               link="tel:+919361614200"
             />
             <ContactInfo 
-              icon={<MapPin className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />}
+              icon={<MapPin className="w-5 h-5 text-indigo-600 dark:text-cyber-cyan" />}
               title="Location"
-              content="Coimbatore, Tamil Nadu, India"
+              content="Dharmapuri, Tamil Nadu, India"
             />
-            
           </motion.div>
 
           <motion.form
             ref={form}
             onSubmit={sendEmail}
-            className="space-y-6 bg-white dark:bg-gray-700/50 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700"
+            className="space-y-6 glass-panel p-8 rounded-2xl shadow-lg border border-gray-150 dark:border-cyber-border-dark"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Your Name
+              <label htmlFor="name" className="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 dark:text-cyber-cyan mb-1">
+                // Your Name
               </label>
               <input
                 type="text"
@@ -133,8 +137,8 @@ const Contact = () => {
             </div>
             
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Email Address
+              <label htmlFor="email" className="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 dark:text-cyber-cyan mb-1">
+                // Email Address
               </label>
               <input
                 type="email"
@@ -146,13 +150,13 @@ const Contact = () => {
             </div>
             
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Your Message
+              <label htmlFor="message" className="block text-xs font-mono font-bold uppercase tracking-wider text-gray-700 dark:text-cyber-cyan mb-1">
+                // Your Message
               </label>
               <textarea
                 id="message"
                 name="message"
-                rows={5}
+                rows={4}
                 className={inputClasses}
                 required
               ></textarea>
@@ -161,7 +165,7 @@ const Contact = () => {
             <div className="pt-2">
               <motion.button
                 type="submit"
-                className="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium rounded-full text-white bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-700 hover:to-indigo-600 shadow-lg transition-all duration-300 w-full"
+                className="inline-flex items-center justify-center px-8 py-3.5 text-sm font-bold tracking-wider uppercase rounded-lg text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] dark:from-cyber-cyan dark:to-cyber-purple dark:text-cyber-dark dark:hover:shadow-[0_0_25px_rgba(0,242,254,0.5)] transition-all duration-300 w-full cursor-pointer shadow-lg"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 disabled={isSubmitting}

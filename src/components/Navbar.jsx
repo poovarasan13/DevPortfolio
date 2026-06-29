@@ -6,9 +6,10 @@ const NavItem = ({ label, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition-colors"
+      className="relative px-3 py-2 text-sm font-semibold text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-cyber-cyan transition-all duration-200 group cursor-pointer font-display"
     >
-      {label}
+      <span className="relative z-10">{label}</span>
+      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-600 dark:bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
     </button>
   );
 };
@@ -17,9 +18,10 @@ const MobileNavItem = ({ label, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="px-3 py-2 text-xl font-medium text-gray-800 hover:text-indigo-600 dark:text-gray-100 dark:hover:text-indigo-400 transition-colors"
+      className="relative px-4 py-2 text-xl font-bold text-gray-800 hover:text-indigo-600 dark:text-gray-100 dark:hover:text-cyber-cyan transition-all duration-200 group cursor-pointer font-display"
     >
-      {label}
+      <span className="relative z-10">{label}</span>
+      <span className="absolute bottom-0 left-1/4 w-0 h-0.5 bg-indigo-600 dark:bg-cyber-cyan transition-all duration-300 group-hover:w-1/2"></span>
     </button>
   );
 };
@@ -30,7 +32,7 @@ const SocialLink = ({ href, icon }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="p-2 rounded-full text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 transition-colors"
+      className="p-2 rounded-lg text-gray-600 hover:text-indigo-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-cyber-cyan dark:hover:bg-cyber-card-dark transition-all duration-250"
     >
       {icon}
     </a>
@@ -69,14 +71,16 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md'
-          : 'bg-transparent'
+          ? 'bg-white/80 dark:bg-cyber-dark/80 backdrop-blur-md border-b border-indigo-500/10 dark:border-cyber-cyan/15 shadow-[0_4px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,242,254,0.05)]'
+          : 'bg-transparent border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 md:h-20 items-center">
           <div className="flex-shrink-0 cursor-pointer" onClick={() => scrollToSection('hero')}>
-            <h1 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Poovarasan S</h1>
+            <h1 className="text-2xl font-bold tracking-wider text-indigo-600 dark:text-cyber-cyan font-display dark:drop-shadow-[0_0_8px_rgba(0,242,254,0.4)]">
+              &lt;POOVARASAN S /&gt;
+            </h1>
           </div>
 
           {/* Desktop menu */}
@@ -89,22 +93,22 @@ const Navbar = () => {
               <NavItem label="Contact" onClick={() => scrollToSection('contact')} />
             </div>
 
-            <div className="flex items-center pl-4 ml-4 border-l border-gray-200 dark:border-gray-700">
-              <SocialLink href={link.github} icon={<Github className="w-5 h-5" />} />
-              <SocialLink href={link.linkedin} icon={<Linkedin className="w-5 h-5" />} />
-              <SocialLink href={link.gmail} icon={<Mail className="w-5 h-5" />} />
+            <div className="flex items-center pl-4 ml-4 border-l border-gray-200 dark:border-gray-800 space-x-2">
+              <SocialLink href={link.github} icon={<Github className="w-4 h-4" />} />
+              <SocialLink href={link.linkedin} icon={<Linkedin className="w-4 h-4" />} />
+              <SocialLink href={link.gmail} icon={<Mail className="w-4 h-4" />} />
               
-              {/* <button
+              <button
                 onClick={toggleTheme}
-                className="p-2 rounded-full text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 focus:outline-none"
+                className="p-2 rounded-lg text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-cyber-cyan hover:bg-gray-100 dark:hover:bg-cyber-card-dark transition-all duration-200 focus:outline-none cursor-pointer"
                 aria-label="Toggle theme"
               >
                 {darkMode ? (
-                  <Sun className="w-5 h-5" />
+                  <Sun className="w-4 h-4 text-amber-400 animate-pulse" />
                 ) : (
-                  <Moon className="w-5 h-5" />
+                  <Moon className="w-4 h-4" />
                 )}
-              </button> */}
+              </button>
             </div>
           </div>
 
@@ -141,12 +145,15 @@ const Navbar = () => {
       <div
         className={`${
           isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
-        } md:hidden fixed inset-0 z-40 w-full bg-white dark:bg-gray-900 transition-all duration-300 ease-in-out transform h-full flex flex-col`}
+        } md:hidden fixed inset-0 z-40 w-full bg-white/95 dark:bg-cyber-dark/95 backdrop-blur-lg transition-all duration-300 ease-in-out transform h-full flex flex-col cyber-grid`}
       >
-        <div className="p-4 flex justify-end">
+        <div className="p-4 flex justify-between items-center border-b border-gray-100 dark:border-cyber-border-dark">
+          <span className="text-xl font-bold text-indigo-600 dark:text-cyber-cyan font-display">
+            &lt;MENU /&gt;
+          </span>
           <button
             onClick={() => setIsOpen(false)}
-            className="p-2 rounded-md text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 focus:outline-none"
+            className="p-2 rounded-lg text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-cyber-cyan focus:outline-none"
           >
             <X className="block h-6 w-6" aria-hidden="true" />
           </button>
@@ -159,9 +166,9 @@ const Navbar = () => {
           <MobileNavItem label="Contact" onClick={() => scrollToSection('contact')} />
           
           <div className="flex items-center space-x-4 pt-8">
-            <SocialLink href="https://github.com/poovarasan13" icon={<Github className="w-5 h-5" />} />
-            <SocialLink href="https://www.linkedin.com/in/poovarasan13" icon={<Linkedin className="w-5 h-5" />} />
-            <SocialLink href="mailto:poovarasan936161@gmail.com" icon={<Mail className="w-5 h-5" />} />
+            <SocialLink href={link.github} icon={<Github className="w-5 h-5" />} />
+            <SocialLink href={link.linkedin} icon={<Linkedin className="w-5 h-5" />} />
+            <SocialLink href={link.gmail} icon={<Mail className="w-5 h-5" />} />
           </div>
         </div>
       </div>
