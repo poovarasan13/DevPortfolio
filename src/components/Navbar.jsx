@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useTheme } from '../context/ThemeContext';
-import { Menu, X, Sun, Moon, Github, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
 import link from '../data/link';
 const NavItem = ({ label, onClick }) => {
   return (
@@ -40,7 +39,6 @@ const SocialLink = ({ href, icon }) => {
 };
 
 const Navbar = () => {
-  const { darkMode, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -97,34 +95,11 @@ const Navbar = () => {
               <SocialLink href={link.github} icon={<Github className="w-4 h-4" />} />
               <SocialLink href={link.linkedin} icon={<Linkedin className="w-4 h-4" />} />
               <SocialLink href={link.gmail} icon={<Mail className="w-4 h-4" />} />
-              
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-cyber-cyan hover:bg-gray-100 dark:hover:bg-cyber-card-dark transition-all duration-200 focus:outline-none cursor-pointer"
-                aria-label="Toggle theme"
-              >
-                {darkMode ? (
-                  <Sun className="w-4 h-4 text-amber-400 animate-pulse" />
-                ) : (
-                  <Moon className="w-4 h-4" />
-                )}
-              </button>
             </div>
           </div>
 
           {/* Mobile menu button */}
           <div className="flex md:hidden items-center">
-            <button
-              onClick={toggleTheme}
-              className="p-2 mr-2 rounded-full text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 focus:outline-none"
-              aria-label="Toggle theme"
-            >
-              {darkMode ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-md text-gray-600 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 focus:outline-none"
