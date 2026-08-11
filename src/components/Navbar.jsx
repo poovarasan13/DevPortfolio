@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, Moon, Sun } from 'lucide-react';
 import link from '../data/link';
+import { useTheme } from '../context/ThemeContext';
+
 const NavItem = ({ label, onClick }) => {
   return (
     <button
@@ -41,6 +43,7 @@ const SocialLink = ({ href, icon }) => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { darkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,11 +90,18 @@ const Navbar = () => {
               <NavItem label="About" onClick={() => scrollToSection('about')} />
               <NavItem label="Skills" onClick={() => scrollToSection('skills')} />
               <NavItem label="Projects" onClick={() => scrollToSection('projects')} />
-              <NavItem label="Education" onClick={() => scrollToSection('education')} />
+              {/* <NavItem label="Education" onClick={() => scrollToSection('education')} /> */}
               <NavItem label="Contact" onClick={() => scrollToSection('contact')} />
             </div>
 
             <div className="flex items-center pl-4 ml-4 border-l border-gray-200 dark:border-gray-800 space-x-2">
+              <button 
+                onClick={toggleTheme}
+                className="p-2 rounded-lg text-gray-600 hover:text-indigo-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-cyber-cyan dark:hover:bg-cyber-card-dark transition-all duration-250 mr-2"
+                aria-label="Toggle Dark Mode"
+              >
+                {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
               <SocialLink href={link.github} icon={<Github className="w-4 h-4" />} />
               <SocialLink href={link.linkedin} icon={<Linkedin className="w-4 h-4" />} />
               <SocialLink href={link.gmail} icon={<Mail className="w-4 h-4" />} />
@@ -141,6 +151,13 @@ const Navbar = () => {
           <MobileNavItem label="Contact" onClick={() => scrollToSection('contact')} />
           
           <div className="flex items-center space-x-4 pt-8">
+            <button 
+              onClick={toggleTheme}
+              className="p-2 rounded-lg text-gray-600 hover:text-indigo-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-cyber-cyan dark:hover:bg-cyber-card-dark transition-all duration-250"
+              aria-label="Toggle Dark Mode"
+            >
+              {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
             <SocialLink href={link.github} icon={<Github className="w-5 h-5" />} />
             <SocialLink href={link.linkedin} icon={<Linkedin className="w-5 h-5" />} />
             <SocialLink href={link.gmail} icon={<Mail className="w-5 h-5" />} />
