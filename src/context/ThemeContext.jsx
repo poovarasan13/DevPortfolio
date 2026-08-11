@@ -11,15 +11,29 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [darkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved) return saved === 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return false;
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
-    root.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
-  }, []);
+    if (darkMode) {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [darkMode]);
 
-  const toggleTheme = () => {};
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleTheme }}>

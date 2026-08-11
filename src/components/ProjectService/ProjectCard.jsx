@@ -13,7 +13,7 @@ const ProjectCard = ({ project }) => {
           loading="lazy"
         />
         <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded text-[9px] font-mono text-cyber-cyan border border-cyber-cyan/30">
-          ID: {String(project.id).padStart(3, '0')}
+          {String(project.id + 1).padStart(3, '0')}
         </div>
       </div>
       
@@ -43,7 +43,7 @@ const ProjectCard = ({ project }) => {
             ))}
           </div>
           
-          <div className="flex items-center justify-between border-t border-gray-100 dark:border-cyber-border-dark pt-4">
+          {/* <div className="flex items-center justify-between border-t border-gray-100 dark:border-cyber-border-dark pt-4">
             {project.githubUrl ? (
               <a
                 href={project.githubUrl}
@@ -68,7 +68,7 @@ const ProjectCard = ({ project }) => {
                 <ExternalLink className="ml-1 w-3.5 h-3.5" />
               </a>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
